@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="node0" Bounds="0,378.37,159.843333333333,23.3" Foreground="#FF0000FF" Label="Initial Operation duration factor" NodeRadius="0" />
+    <Node Id="node1" Background="#FF000000" Bounds="235.921666666667,442.31,50,20.64" Foreground="#FFFFFFFF" Label="Multiply" NodeRadius="0" />
+    <Node Id="node10" Background="#FF000000" Bounds="333.674663653907,297.09,50,20.64" Foreground="#FFFFFFFF" Label="Copy" NodeRadius="0" />
+    <Node Id="node11" Bounds="148.921666666667,-1.77635683940025E-15,50,23.3" Foreground="#FF0000FF" Label="Day" Shape="None" />
+    <Node Id="node12" Background="#FF000000" Bounds="229.921666666667,63.9400000000001,50,20.64" Foreground="#FFFFFFFF" Label="Equal" NodeRadius="0" />
+    <Node Id="node13" Bounds="229.921666666667,0.664999999999964,50,21.97" Foreground="#FF000000" Label="Night" Shape="None" />
+    <Node Id="node14" Bounds="54.9216666666666,125.885,50,21.97" Foreground="#FF000000" Label="1" Shape="None" />
+    <Node Id="node15" Background="#FF000000" Bounds="-4.62367232428304,255.785,133.673333333333,20.64" Foreground="#FFFFFFFF" Label="GaussianFromMeanAndVariance" NodeRadius="0" />
+    <Node Id="node16" Bounds="135.921666666667,125.885,50,21.97" Foreground="#FF000000" Label="0,01" Shape="None" />
+    <Node Id="node2" Bounds="190.365,378.37,141.113333333333,23.3" Foreground="#FF0000FF" Label="Night Shift Weekend Factor" NodeRadius="0" />
+    <Node Id="node3" Bounds="194.403333333333,503.590000000001,133.036666666667,23.3" Foreground="#FF0000FF" Label="Operation duration factor" NodeRadius="0" />
+    <Node Id="node4" Bounds="190.022991697527,234.479988708496,50,21.97" Foreground="#FF000000" Label="1,1" Shape="None" />
+    <Node Id="node5" Bounds="159.04966100905,194.479888708496,111.946666666667,143.250211291504" Foreground="#FF000000" Group="Expanded" Label="Is_Night_Shift" />
+    <Node Id="node6" Bounds="216.35,125.22,77.1433333333334,23.3" Foreground="#FF0000FF" Label="Is Night Shift" NodeRadius="0" />
+    <Node Id="node7" Background="#FF000000" Bounds="190.02299698724,297.09,50,20.64" Foreground="#FFFFFFFF" Label="Copy" NodeRadius="0" />
+    <Node Id="node8" Bounds="333.674658364194,234.479988708496,50,21.97" Foreground="#FF000000" Label="1" Shape="None" />
+    <Node Id="node9" Bounds="300.996327675717,194.479888708496,115.356666666667,143.250211291504" Foreground="#FF000000" Group="Expanded" Label="!Is_Night_Shift" />
+  </Nodes>
+  <Links>
+    <Link Source="node0" Target="node1" Bounds="113.600791931152,401.670013427734,113.815361022949,39.3700561523438" Label="a" LabelBounds="172.344123143268,416.67,4.06999999999999,10.6400000000001" />
+    <Link Source="node1" Target="node3" Bounds="260.921661376953,462.950012207031,0,31.6399841308594" Label="" LabelBounds="260.921666666667,477.950000000001,0,10.64" />
+    <Link Source="node10" Target="node2" Label="" />
+    <Link Source="node11" Target="node12" Bounds="187.769027709961,23.2999992370605,45.340087890625,35.4171600341797" Label="a" LabelBounds="207.851666666667,38.3,4.06999999999999,10.6400000000001" />
+    <Link Source="node12" Target="node6" Bounds="254.921661376953,84.5800018310547,0,31.6399993896484" Label="" LabelBounds="254.921666666667,99.5800000000003,0,10.64" />
+    <Link Source="node13" Target="node12" Bounds="256.054412841797,22.6350002288818,1.33975219726563,32.3508815765381" Label="b" LabelBounds="257.894166666667,38.3,4.70333333333338,10.6400000000001" />
+    <Link Source="node14" Target="node15" Bounds="64.848936290426,147.854998931885,13.5674867205814,99.0133231682662" Label="mean" LabelBounds="75.6328526741093,192.313177082626,19.67,10.6400000000001" />
+    <Link Source="node15" Target="node0" Bounds="63.6878238495991,276.425,13.2956909447131,93.0355202944799" Label="" LabelBounds="74.3358736966213,317.339815195396,0.0999999999999943,10.64" />
+    <Link Source="node16" Target="node15" Bounds="75.5582541412248,147.854998931885,76.9731515123331,100.777627910108" Label="variance" LabelBounds="115.634246154726,199.457796396266,29.0966666666667,10.6400000000001" />
+    <Link Source="node2" Target="node1" Bounds="260.921661376953,401.670013427734,0,31.6399841308594" Label="b" LabelBounds="260.921666666667,416.67,4.70333333333332,10.6400000000001" />
+    <Link Source="node4" Target="node7" Bounds="215.022992635577,256.449988708496,2.70185751105601E-06,31.6400112915042" Label="value" LabelBounds="219.022993986505,266.949994183461,18.55,10.6400000000001" />
+    <Link Source="node5" Target="node4" Category="Contains" Label="" />
+    <Link Source="node5" Target="node7" Category="Contains" Label="" />
+    <Link Source="node6" Target="node5" Bounds="239.790707318929,148.52,11.5342591281074,37.3603888667286" Label="" LabelBounds="249.561981836622,161.010312533049,0.0999999999999943,15.96" />
+    <Link Source="node6" Target="node9" Bounds="264.274569803533,148.52,32.4898166036544,40.4693984203267" Label="" LabelBounds="282.079064758078,151.542625141801,0,15.96" />
+    <Link Source="node7" Target="node2" Label="" />
+    <Link Source="node8" Target="node10" Bounds="358.674659302243,256.449988708496,2.70185751105601E-06,31.6400112915042" Label="value" LabelBounds="362.674660653172,266.949994183461,18.55,10.6400000000001" />
+    <Link Source="node9" Target="node10" Category="Contains" Label="" />
+    <Link Source="node9" Target="node8" Category="Contains" Label="" />
+  </Links>
+  <Categories>
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+  </Categories>
+  <Properties>
+    <Property Id="Background" Label="Background" Description="The background color" DataType="System.Windows.Media.Brush" />
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="Foreground" Label="Foreground" Description="The foreground color" DataType="System.Windows.Media.Brush" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="LabelBounds" DataType="System.Windows.Rect" />
+    <Property Id="NodeRadius" Label="Node Radius" Description="Node Radius" DataType="System.Double" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="Shape" DataType="System.String" />
+  </Properties>
+</DirectedGraph>

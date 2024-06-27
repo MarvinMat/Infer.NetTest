@@ -22,35 +22,28 @@ namespace ProcessSimulator
 
         public InferenceModel()
         {
-            temperatureVar = Variable.New<double>().Named("Temperature");
-            workingDayVar = Variable.New<bool>().Named("Working Day");
+            //temperatureVar = Variable.New<double>().Named("Temperature");
+            //workingDayVar = Variable.New<bool>().Named("Working Day");
             daysSinceLastInterruptVar = Variable.New<double>().Named("Days Since Last Interrupt");
             shiftVar = Variable.New<Shift>().Named("Shift");
 
             operationDurationVar = Variable.GaussianFromMeanAndVariance(1, 0.01).Named("Initial Operation duration factor");
 
-            operationDurationVar *= (0.9 + 0.2 * (Variable.Exp(Variable.Min(Variable.Constant(30.0), daysSinceLastInterruptVar)) / Math.Exp(30))).Named("Time Since Last Interrupt Factor");
-
-            operationDurationVar *= (temperatureVar / 20).Named("Temperature Factor");
+            //operationDurationVar *= (0.9 + 0.2 * (Variable.Exp(Variable.Min(Variable.Constant(30.0), daysSinceLastInterruptVar)) / Math.Exp(30))).Named("Time Since Last Interrupt Factor");
+            
+            //operationDurationVar *= (temperatureVar / 20).Named("Temperature Factor");
 
             var nightShiftWeekendFactor = Variable.New<double>().Named("Night Shift Weekend Factor");
-            using (Variable.If(workingDayVar))
+
+            var isNightShiftVar = (shiftVar == Shift.Night).Named("Is Night Shift");
+            using (Variable.If(isNightShiftVar))
+            {
+                nightShiftWeekendFactor.SetTo(Variable.Constant(1.1));
+            }
+            using (Variable.IfNot(isNightShiftVar))
             {
                 nightShiftWeekendFactor.SetTo(Variable.Constant(1.0));
             }
-            using (Variable.IfNot(workingDayVar))
-            {
-                var isNightShiftVar = (shiftVar == Shift.Night).Named("Is Night Shift");
-                using (Variable.If(isNightShiftVar))
-                {
-                    nightShiftWeekendFactor.SetTo(Variable.Constant(1.1));
-                }
-                using (Variable.IfNot(isNightShiftVar))
-                {
-                    nightShiftWeekendFactor.SetTo(Variable.Constant(1.0));
-                }
-            }
-
             operationDurationVar *= nightShiftWeekendFactor;
             operationDurationVar.Named("Operation duration factor");
 
@@ -61,14 +54,12 @@ namespace ProcessSimulator
             // Configure other properties if necessary
             engine.Compiler.GenerateInMemory = true; // Keep assemblies in memory if not saving to disk
             engine.Compiler.WriteSourceFiles = true;
-            engine.Compiler.GeneratedSourceFolder = @"C:\Users\marvi\source\repos\temp"; // Specify the folder to save graphs
-            engine.SaveFactorGraphToFolder = @"C:\Users\marvi\source\repos\temp";
+            engine.Compiler.GeneratedSourceFolder = @"C:\Users\marvi\source\repos\Infer.NetTest\Infer.NetTest"; // Specify the folder to save graphs
+            engine.SaveFactorGraphToFolder = @"C:\Users\marvi\source\repos\Infer.NetTest\Infer.NetTest";
         }
 
-        public double Infer(double temperature, bool workingDay, double daysSinceLastInterrupt, Shift shift)
+        public double Infer(double daysSinceLastInterrupt, Shift shift)
         {
-            temperatureVar.ObservedValue = temperature;
-            workingDayVar.ObservedValue = workingDay;
             daysSinceLastInterruptVar.ObservedValue = daysSinceLastInterrupt;
             shiftVar.ObservedValue = shift;
 
@@ -82,7 +73,7 @@ namespace ProcessSimulator
         static void Main(string[] args)
         {
             InferenceModel model = new InferenceModel();
-            double inferredDuration = model.Infer(25.0, true, 10.0, Shift.Day);
+            double inferredDuration = model.Infer(10.0, Shift.Day);
             System.Console.WriteLine($"Inferred Operation Duration: {inferredDuration}");
         }
     }

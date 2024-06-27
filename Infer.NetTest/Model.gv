@@ -1,0 +1,42 @@
+digraph Model
+{
+    node [ fontsize=8, style="filled, rounded", fillcolor=transparent ];
+
+    node0 [ label="Initial Operation duration factor" fontsize="10" fontcolor="#0000FF" shape="box" ];
+    node1 [ label="Multiply" fontsize="8" fontcolor="#FFFFFF" fillcolor="#000000" shape="box" ];
+    node2 [ label="Night Shift Weekend Factor" fontsize="10" fontcolor="#0000FF" shape="box" ];
+    node3 [ label="Operation duration factor" fontsize="10" fontcolor="#0000FF" shape="box" ];
+    node4 [ label="1,1" fontsize="9" fontcolor="#000000" shape="none" ];
+    node5 [ label="Is_Night_Shift" fontcolor="#000000" shape="box" ];
+    node6 [ label="Is Night Shift" fontsize="10" fontcolor="#0000FF" shape="box" ];
+    node7 [ label="Copy" fontsize="8" fontcolor="#FFFFFF" fillcolor="#000000" shape="box" ];
+    node8 [ label="1" fontsize="9" fontcolor="#000000" shape="none" ];
+    node9 [ label="!Is_Night_Shift" fontcolor="#000000" shape="box" ];
+    node10 [ label="Copy" fontsize="8" fontcolor="#FFFFFF" fillcolor="#000000" shape="box" ];
+    node11 [ label="Day" fontsize="10" fontcolor="#0000FF" shape="none" ];
+    node12 [ label="Equal" fontsize="8" fontcolor="#FFFFFF" fillcolor="#000000" shape="box" ];
+    node13 [ label="Night" fontsize="9" fontcolor="#000000" shape="none" ];
+    node14 [ label="1" fontsize="9" fontcolor="#000000" shape="none" ];
+    node15 [ label="GaussianFromMeanAndVariance" fontsize="8" fontcolor="#FFFFFF" fillcolor="#000000" shape="box" ];
+    node16 [ label="0,01" fontsize="9" fontcolor="#000000" shape="none" ];
+
+    node0 -> node1 [ label="a" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node2 -> node1 [ label="b" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node1 -> node3 [ label="" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node6 -> node5 [ arrowtail="none" ];
+    node5 -> node4 [ arrowtail="none" ];
+    node5 -> node7 [ arrowtail="none" ];
+    node4 -> node7 [ label="value" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node7 -> node2 [ label="" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node6 -> node9 [ arrowtail="none" ];
+    node9 -> node8 [ arrowtail="none" ];
+    node9 -> node10 [ arrowtail="none" ];
+    node8 -> node10 [ label="value" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node10 -> node2 [ label="" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node11 -> node12 [ label="a" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node13 -> node12 [ label="b" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node12 -> node6 [ label="" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node14 -> node15 [ label="mean" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node16 -> node15 [ label="variance" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+    node15 -> node0 [ label="" fontsize="8" fontcolor="#D3D3D3" arrowtail="none" ];
+}
